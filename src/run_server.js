@@ -14,11 +14,11 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', () => {
+app.get('/', (req, res) => {
   res.json({
     message: "internal wallet service up and running",
   })
-})
+});
 
 app.get('/health', (req, res) => {
   res.json({ status: 'OK' });

@@ -37,10 +37,10 @@ async function topUpService({ userId, assetId, amount, referenceId }) {
         [wallet.id, amount, referenceId]
       );
     } catch (error) {
-      if (err.code === '23505') {
+      if (error.code === '23505') {
         return { success: true, message: 'Already processed (idempotent)' };
       }
-      throw err;
+      throw error;
     }
 
     // Update wallet balance
@@ -96,10 +96,10 @@ async function spendService({ userId, assetId, amount, referenceId }) {
         [wallet.id, -amount, referenceId]
       );
     } catch (error) {
-      if (err.code === '23505') {
+      if (error.code === '23505') {
         return { success: true, message: 'Already processed (idempotent)' };
       }
-      throw err;
+      throw error;
     }
 
     // Update balance
@@ -173,6 +173,8 @@ async function getBalanceService(userId, assetId) {
   if (result.rowCount === 0) {
     throw new Error('Wallet not found');
   }
+
+  console.log("[LOG]: Checking wallet for:", userId, assetId);
 
   return result.rows[0].balance;
 }
