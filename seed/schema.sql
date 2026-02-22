@@ -62,7 +62,7 @@ CREATE TABLE
     reference_id VARCHAR(100) NOT NULL UNIQUE,    --- reference_id : idempotency key. for checking of duplicate requests
     created_at TIMESTAMP NOT NULL DEFAULT NOW (),
     CONSTRAINT fk_wallet FOREIGN KEY (wallet_id) REFERENCES wallets (id)
-  )
+  );
 
 -- indexes
 -- CREATE INDEX idx_wallet_user_asset ON wallets (user_id, asset_id);

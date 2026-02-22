@@ -12,15 +12,17 @@ await connectDB();
 
 app.use(errorHandler);
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK' });
-});
+const PORT = process.env.PORT || 3000;
 
 app.get('/', () => {
   res.json({
     message: "internal wallet service up and running",
   })
 })
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK' });
+});
 
 app.listen(PORT, () => {
   console.log(`[SUCCESS]: Server running on port ${PORT}`);

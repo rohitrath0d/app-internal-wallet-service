@@ -2,11 +2,11 @@ import { Pool } from "pg";
 import { withRetry } from "../../utils/retry.util.js";
 
 export const poolConnection = new Pool({
-  host: 'localhost',
-  user: 'postgres',
-  password: 'postgres',
-  database: 'internal_wallet_service_db',
-  port: 5432
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'postgres',
+  password: process.env.DB_PASSWORD || 'postgres',
+  database: process.env.DB_NAME || 'internal_wallet_service_db',
+  port: process.env.DB_PORT || 5432
 })
 
 
